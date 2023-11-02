@@ -1,6 +1,6 @@
 let escrows = [];
 
-export const createPost = async (req, res) => {
+export const createEscrow = async (req, res) => {
   const { address, arbiter, beneficiary, amount } = req.body;
   escrows.push({ address, arbiter, beneficiary, amount });
   console.log(escrows);
@@ -12,7 +12,7 @@ export const createPost = async (req, res) => {
   }
 };
 
-export const getPosts = async (req, res) => {
+export const getEscrows = async (req, res) => {
   try {
     res.status(201).send(escrows);
   } catch (err) {
@@ -20,7 +20,7 @@ export const getPosts = async (req, res) => {
   }
 };
 
-export const getApprovedPosts = async (req, res) => {
+export const getApprovedEscrows = async (req, res) => {
   const { signer } = req.params;
   let deployerContracts = escrows.filter(
     (escrow) =>
