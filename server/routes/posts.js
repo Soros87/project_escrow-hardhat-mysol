@@ -1,5 +1,10 @@
 import express from "express";
-import { createPost, getPosts } from "../controllers/posts.js"; //remember to add .js - in react we dont need. in express we need
+import {
+  getPosts,
+  createPost,
+  getApprovedPosts,
+} from "../controllers/posts.js"; //remember to add .js - in react we dont need. in express we need
+
 const router = express.Router();
 
 router.post("/", createPost);
