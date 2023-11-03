@@ -1,12 +1,11 @@
 let escrows = [];
 
 export const createEscrow = async (req, res) => {
-  const { address, arbiter, beneficiary, amount } = req.body;
-  escrows.push({ address, arbiter, beneficiary, amount });
-  console.log(escrows);
+  const { signer, arbiter, beneficiary, amount } = req.body;
+  escrows.push({ signer, arbiter, beneficiary, amount });
 
   try {
-    res.status(201).send({ address, arbiter, beneficiary, amount });
+    res.status(201).send({ signer, arbiter, beneficiary, amount });
   } catch (err) {
     res.status(409).json({ message: err.message });
   }

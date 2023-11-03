@@ -11,5 +11,5 @@ app.use(express.json());
 app.use("/escrows", postRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}...`);
+  console.log(`Server Running on Port: http://localhost:${PORT}...`);
 });

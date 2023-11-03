@@ -1,10 +1,23 @@
+import contractInstance from "./contractInstance";
+
 export default function Escrow({
   address,
   arbiter,
   beneficiary,
-  value,
-  handleApprove,
+  amount,
+  signer,
 }) {
+  async function handleApprove(e) {
+    e.preventDefault();
+    try {
+      const escrowContract = contractInstance(address, signer);
+      const tx = await escrowContract.connect(signer).approve();
+      await tx.wait();
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
   return (
     <div className="existing-contract">
       <ul className="fields">
@@ -18,14 +31,12 @@ export default function Escrow({
         </li>
         <li>
           <div> Value </div>
-          <div> {value} </div>
+          <div> {amount} </div>
         </li>
         <div
           className="button"
           id={address}
           onClick={(e) => {
-            e.preventDefault();
-
             handleApprove();
           }}
         >
